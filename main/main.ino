@@ -74,11 +74,11 @@ void setup() {
 }
 
 void loop() {
-  if (digitalRead(pinBtnSelect) == HIGH)
+  if (digitalRead(pinBtnSelect) == LOW)
     mode = defaultMode;
-  if (mode > minMode && digitalRead(pinBtnLeft) == HIGH)
+  if (mode > minMode && digitalRead(pinBtnLeft) == LOW)
       mode --;
-  if (mode < maxMode && digitalRead(pinBtnRight) == HIGH)
+  if (mode < maxMode && digitalRead(pinBtnRight) == LOW)
       mode ++;
 
   if (mode < 7) {
