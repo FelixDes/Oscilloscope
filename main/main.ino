@@ -11,21 +11,18 @@
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
 #endif
 
-#define DEMO
 
 const int pinBtnSelect = 9;
-const int pinBtnLeft = 8;
-const int pinBtnRight = 10;
+const int pinBtnLeft = 10;
+const int pinBtnRight = 8;
 const int pinAnalogIn = A0;
-#ifdef DEMO
 const int pinPwm25Out = 3;
-#endif
 const int bufferSize = 128;
 const int minMode = 1;
 const int maxMode = 7 + 500;
-const int defaultMode = 4; // DIV16
+const int defaultMode = 4;
 
-Adafruit_SSD1306 display(-1);
+Adafruit_SSD1306 display(128, 32, &Wire, -1);
 byte buffer[bufferSize];
 int mode = defaultMode;
 //bool lastClkValue;
@@ -64,11 +61,9 @@ void setup() {
   pinMode(pinBtnRight, INPUT_PULLUP);
   
   pinMode(pinAnalogIn, INPUT);
-#ifdef SELFDEMO
   pinMode(pinPwm25Out, OUTPUT);
-  analogWrite(pinPwm25Out, 63);
-#endif
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3D, false);
+  analogWrite(pinPwm25Out, 128);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C, false);
   display.setTextSize(1);
   display.clearDisplay();
 }
