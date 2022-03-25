@@ -15,8 +15,9 @@
 const int pinBtnSelect = 9;
 const int pinBtnLeft = 10;
 const int pinBtnRight = 8;
-const int pinAnalogIn = A0;
 const int pinPwm25Out = 3;
+const int pinAnalogIn = A0;
+
 const int bufferSize = 128;
 
 const int minMode = 1;
@@ -85,7 +86,7 @@ void loop() {
       mode ++;
 
   if (mode < 7) {
-    // if mode < 7 we using hardware ADC
+    // if mode < 7 we using hardware ADC prescaler
     // for more information follow the link https://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A-PA-88A-PA-168A-PA-328-P-DS-DS40002061B.pdf
     // to 24.9.2 ADCSRA – ADC Control and Status Register A
     if (mode & 1)
@@ -101,7 +102,7 @@ void loop() {
     else
       cbi(ADCSRA, ADPS2);
   } else {
-    // else we are clearing all regiters and using prigramm delays
+    // else we are clearing all regiters and using software delay
     sbi(ADCSRA, ADPS0);
     sbi(ADCSRA, ADPS1);
     sbi(ADCSRA, ADPS2);
